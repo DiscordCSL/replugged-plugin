@@ -57,13 +57,13 @@ function addStyle() {
 }
 
 function removeStyle() {
-  var removeData = document.getElementById("DiscordCSL-style");
+  let removeData = document.getElementById("DiscordCSL-style");
   removeData!.parentNode!.removeChild(removeData!);
 }
 
 // Fetching the database
 let data: { servers: string | any[] };
-var getDB = async () => {
+let getDB = async () => {
   const response = await fetch(
     "https://raw.githubusercontent.com/DiscordCSL/database/main/db.json",
   );
@@ -81,14 +81,14 @@ var getDB = async () => {
 };
 
 // Injecting the logo
-var injectLogo = () => {
+let injectLogo = () => {
   if (
     !document.getElementsByClassName(loadingSplash_class)[0] &&
     window.location.pathname.split("/")[1] == "channels" &&
     !(window.location.pathname.split("/")[2] == "@me")
   ) {
     if (!document.getElementsByClassName(serverHeader_class)[0].hasAttribute("csl-server")) {
-      for (var i = 0; i < data.servers.length; i++) {
+      for (let i = 0; i < data.servers.length; i++) {
         if (data.servers[i].id == window.location.pathname.split("/")[2]) {
           if (!document.getElementsByClassName(serverHeader_class)[0].hasAttribute("csl-server")) {
             document.getElementsByClassName(serverHeader_class)[0].setAttribute("csl-server", "");
@@ -114,8 +114,8 @@ var injectLogo = () => {
 
 // Plugin Stuff
 
-var inject = setInterval(injectLogo, 0);
-export async function start(): Promise<void> {
+let inject = setInterval(injectLogo, 0);
+export function start(): void {
   addStyle();
   setTimeout(function () {
     getDB();
