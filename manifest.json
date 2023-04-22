@@ -1,16 +1,17 @@
 {
-  "id": "dev.replugged.PluginTemplate",
-  "name": "Plugin Template",
-  "description": "A plugin template",
+  "id": "dev.kckarnige.DiscordCSL",
+  "name": "Discord Custom Server Logos",
+  "description": "A neat little Discord plugin that adds custom logos to your favorite servers.",
   "author": {
-    "name": "replugged",
-    "discordID": "1000992611840049192",
-    "github": "replugged-org"
+    "name": "KayoticCarnige",
+    "discordID": "634168893644210186",
+    "github": "kckarnige",
+    "link": "https://kckarnige.is-a.dev"
   },
-  "version": "1.0.0",
+  "version": "5.0.0",
   "updater": {
     "type": "github",
-    "id": "replugged-org/plugin-template"
+    "id": "DiscordCSL/replugged-plugin"
   },
   "license": "MIT",
   "type": "replugged-plugin",
