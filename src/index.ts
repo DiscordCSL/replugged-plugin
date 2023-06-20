@@ -1,7 +1,7 @@
 const serverHeader = "container-1NXEtd";
 const serverName = "name-3Uvkvr";
 const loadingSplash = "container-2RRFHK";
-const manifestVersion = "5.0.0";
+const manifestVersion = "5.0.1";
 
 // CDSL Console Log
 function log(input: string, type: string | null): string {
