@@ -1,10 +1,10 @@
-const serverHeader_class = "container-1NXEtd";
-const serverName_class = "name-3Uvkvr";
-const loadingSplash_class = "container-2RRFHK";
+const serverHeader = "container-1NXEtd";
+const serverName = "name-3Uvkvr";
+const loadingSplash = "container-2RRFHK";
 const manifestVersion = "5.0.0";
 
 // CDSL Console Log
-function log(input: string, type: string | null) {
+function log(input: string, type: string | null): string {
   let color;
   if (type == "info") {
     color = "#43b581";
@@ -24,13 +24,13 @@ function log(input: string, type: string | null) {
 }
 
 // Server Logo Styling
-function addStyle() {
+function addStyle(): string {
   const style = document.createElement("style");
   style.textContent = `
 [csl-server] div.guildIconContainer-3QvE6w {
     transform: translate(-6%, 6%)
 }
-[csl-server] .${serverName_class} {
+[csl-server] .${serverName} {
     display: flex;
     justify-content: center;
     position: relative;
@@ -56,14 +56,14 @@ function addStyle() {
   document.head.append(style);
 }
 
-function removeStyle() {
+function removeStyle(): string {
   let removeData = document.getElementById("DiscordCSL-style");
   removeData!.parentNode!.removeChild(removeData!);
 }
 
 // Fetching the database
-let data: { servers: string | any[] };
-let getDB = async () => {
+let data: { servers: string };
+let getDB = async (): string => {
   const response = await fetch(
     "https://raw.githubusercontent.com/DiscordCSL/database/main/db.json",
   );
@@ -81,33 +81,25 @@ let getDB = async () => {
 };
 
 // Injecting the logo
-let injectLogo = () => {
+let injectLogo = (): string => {
   if (
-    !document.getElementsByClassName(loadingSplash_class)[0] &&
+    !document.getElementsByClassName(loadingSplash)[0] &&
     window.location.pathname.split("/")[1] == "channels" &&
     !(window.location.pathname.split("/")[2] == "@me")
   ) {
-    if (!document.getElementsByClassName(serverHeader_class)[0].hasAttribute("csl-server")) {
+    if (!document.getElementsByClassName(serverHeader)[0].hasAttribute("csl-server")) {
       for (let i = 0; i < data.servers.length; i++) {
         if (data.servers[i].id == window.location.pathname.split("/")[2]) {
-          if (!document.getElementsByClassName(serverHeader_class)[0].hasAttribute("csl-server")) {
-            document.getElementsByClassName(serverHeader_class)[0].setAttribute("csl-server", "");
+          if (!document.getElementsByClassName(serverHeader)[0].hasAttribute("csl-server")) {
+            document.getElementsByClassName(serverHeader)[0].setAttribute("csl-server", "");
           }
           fetch(data.servers[i].logoURL)
             .then((response) => response.text())
             .then((response) => {
-              document.getElementsByClassName(serverName_class)[0].innerHTML = response;
+              document.getElementsByClassName(serverName)[0].innerHTML = response;
             });
         }
       }
-    } else if (
-      Error() &&
-      !document.getElementsByClassName(serverHeader_class)[0].hasAttribute("csl-server")
-    ) {
-      log(
-        "No server header found. Try restarting the app and reinstalling the plugin, before reporting any issues.",
-        "error",
-      );
     }
   }
 };
