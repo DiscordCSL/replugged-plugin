@@ -4,7 +4,7 @@ const loadingSplash = "container-2RRFHK";
 const manifestVersion = "5.0.1";
 
 // CDSL Console Log
-function log(input: string, type: string | null): string {
+function log(input: string, type: string | null): any {
   let color;
   if (type == "info") {
     color = "#43b581";
@@ -24,7 +24,7 @@ function log(input: string, type: string | null): string {
 }
 
 // Server Logo Styling
-function addStyle(): string {
+function addStyle(): any {
   const style = document.createElement("style");
   style.textContent = `
 [csl-server] div.guildIconContainer-3QvE6w {
@@ -56,14 +56,14 @@ function addStyle(): string {
   document.head.append(style);
 }
 
-function removeStyle(): string {
+function removeStyle(): any {
   let removeData = document.getElementById("DiscordCSL-style");
   removeData!.parentNode!.removeChild(removeData!);
 }
 
 // Fetching the database
-let data: { servers: string };
-let getDB = async (): string => {
+let data: { servers: any };
+let getDB = async (): Promise<any> => {
   const response = await fetch(
     "https://raw.githubusercontent.com/DiscordCSL/database/main/db.json",
   );
@@ -81,7 +81,7 @@ let getDB = async (): string => {
 };
 
 // Injecting the logo
-let injectLogo = (): string => {
+let injectLogo = (): any => {
   if (
     !document.getElementsByClassName(loadingSplash)[0] &&
     window.location.pathname.split("/")[1] == "channels" &&
